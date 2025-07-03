@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+  <info>
+    <title>Custom Simple Style with Commas</title>
+    <id>custom-simple-commas</id>
+    <author>
+      <name>Custom</name>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="medicine"/>
+    <updated>2025-01-01T00:00:00+00:00</updated>
+  </info>
+  
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " initialize-with="" delimiter-precedes-last="never"/>
+      <text value=" et al"/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+  
+  <macro name="container-title">
+    <choose>
+      <if type="article-journal">
+        <text variable="container-title"/>
+      </if>
+      <else-if type="webpage">
+        <text variable="container-title"/>
+      </else-if>
+      <else>
+        <text variable="publisher"/>
+      </else>
+    </choose>
+  </macro>
+  
+  <citation>
+    <layout>
+      <text macro="author-short"/>
+      <text value=", "/>
+      <text macro="container-title"/>
+      <text value=", "/>
+      <date variable="issued">
+        <date-part name="year"/>
+      </date>
+      <text value=", "/>
+      <choose>
+        <if variable="DOI">
+          <text value="https://doi.org/"/>
+          <text variable="DOI"/>
+        </if>
+        <else>
+          <text variable="URL"/>
+        </else>
+      </choose>
+    </layout>
+  </citation>
+  
+  <bibliography>
+    <sort>
+      <key macro="author-short"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <text macro="author-short"/>
+      <text value=", "/>
+      <text macro="container-title"/>
+      <text value=", "/>
+      <date variable="issued">
+        <date-part name="year"/>
+      </date>
+      <text value=", "/>
+      <choose>
+        <if variable="DOI">
+          <text value="https://doi.org/"/>
+          <text variable="DOI"/>
+        </if>
+        <else>
+          <text variable="URL"/>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
